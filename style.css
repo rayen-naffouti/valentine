@@ -1,0 +1,144 @@
+body {
+  background-color: rgb(255, 230, 230);
+}
+
+@keyframes mymove {
+  0% {
+      margin-top: 0px;
+  }
+  50% {
+      margin-top: 10px;
+  }
+  100% {
+      margin-top: 0px;
+  }
+}
+
+.bodyContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  text-align: center;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+}
+
+.container {
+  width: 424px;
+  height: 424px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  animation: mymove 1.2s ease infinite;
+}
+.bodyContainer .rotatedContainer{
+  transform: rotatex(180deg);
+  transition: transform 1s ease;
+  position: absolute;
+  z-index: 100;
+}
+.bodyContainer .rotatedContainer.open{
+  transform: rotatex(0deg);
+}
+.bodyContainer .envelopContainer {
+  width: 300px;
+  height: 300px;
+  background-image:
+      linear-gradient(to top left, transparent 50%, rgb(231, 104, 104) 0);
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: right, left;
+  border-top-left-radius: 50px;
+  position: relative;
+  rotate: 45deg;
+  transition: rotate .5s ease;
+}
+
+.bodyContainer .leftenvelopContainer {
+  width: 424px;
+  height: 212px;
+  background-image:
+      linear-gradient(to top left, rgb(228, 141, 141) 50%, transparent 0);
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: right, left;
+  position: absolute;
+  z-index: 40;
+  top: 50%;
+}
+
+.bodyContainer .rightenvelopContainer {
+  width: 424px;
+  height: 212px;
+  background-image: linear-gradient(to top right, rgb(234, 150, 150) 50%, transparent 0);
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: left, right;
+  position: absolute;
+  z-index: 50;
+  top: 50%;
+}
+.envelopContent{
+  position: absolute;
+  background-color: aliceblue;
+  width: 100%;
+  height: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 15px;
+  transition: 1s;
+  bottom: 0;
+  z-index: 30;
+}
+.envelopContent div{
+  width: 400px;
+  height: 190px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 15px;
+  border: 2px dashed red;
+}
+.envelopContent div p{
+  font-style: italic;
+  font-size: 28px;
+  color: red;
+  font-weight: 600;
+}
+.rotatedContainer:hover ~ .envelopContent.canHover,
+.leftenvelopContainer:hover ~ .envelopContent.canHover,
+.rightenvelopContainer:hover ~ .envelopContent.canHover,
+.envelopContent.canHover:hover{
+  transition: .4s;
+  bottom: 100px !important;
+}
+
+@keyframes shadowAnimation {
+  0% {
+      transform: scalex(0.95);
+  }
+
+  50% {
+      transform: scaleX(1);
+  }
+
+  100% {
+      transform: scaleX(0.95);
+  }
+}
+.shadow {
+  width: 424px;
+  height: 10px;
+  margin-top: 15px;
+  background-color: black;
+  border-radius: 50%;
+  filter: blur(8px);
+  transform: scale(0.95);
+  animation: shadowAnimation 1.2s ease infinite;
+}
